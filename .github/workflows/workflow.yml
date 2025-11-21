@@ -24,17 +24,17 @@ jobs:
       # O comando 'mvn -B package -DskipTests' compila e gera o .jar (ou .war) na pasta 'target/'
       - name: Build
         run: mvn clean install -DskipTests
-
-      # 3. Deploy (SSH)
-      - name: copy files whith SSH
-        uses: easingthemes/ssh-deploy
-        env:
-          SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
-        with:
-          ARGS: "-rltgoDzvo --delete"
-          # ALTERAÇÃO AQUI: Agora enviamos apenas o artefato JAR que está na pasta 'target/'
-          SOURCE: "target/*.jar"
-          REMOTE_HOST: "ec2-44-222-151-200.compute-1.amazonaws.com"
-          REMOTE_USER: "ec2-user"
-          TARGET: "/home/ec2-user"
+#
+#      # 3. Deploy (SSH)
+#      - name: copy files whith SSH
+#        uses: easingthemes/ssh-deploy
+#        env:
+#          SSH_PRIVATE_KEY: ${{secrets.EC2_SSH_KEY}}
+#        with:
+#          ARGS: "-rltgoDzvo --delete"
+#          # ALTERAÇÃO AQUI: Agora enviamos apenas o artefato JAR que está na pasta 'target/'
+#          SOURCE: "target/*.jar"
+#          REMOTE_HOST: "ec2-44-222-151-200.compute-1.amazonaws.com"
+#          REMOTE_USER: "ec2-user"
+#          TARGET: "/home/ec2-user"
 #          EXCLUDE: "/dist/, /node_modules/, **.env, rebuild_app.sh, watcher.sh"
